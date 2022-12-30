@@ -94,34 +94,30 @@
         <form id="form" action="">
           <div class="row">
             <div class="input-field col s6">
-              <input id="first_name" name="title" type="text" class="validate" required>
+              <input id="first_name" name="title" type="text" class="validate title" required>
               <label for="first_name">Titulo</label>
             </div>
             <div class="input-field col s6">
-              <input id="last_name" name="gender" type="text" class="validate" required>
+              <input id="last_name" name="gender" type="text" class="validate gender" required>
               <label for="last_name">Genero</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" name="redirection" type="text" class="validate" required>
-              <label for="email">URL redireccion</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="img" name="urlImg" type="text" class="validate" required>
+              <input id="img" name="urlImg" type="text" class="validate urlImg" required>
               <label for="img">URL Imagen</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="textarea2" class="materialize-textarea" data-length="255" required name="description"></textarea>
+              <textarea id="textarea2" class="materialize-textarea validate description" data-length="255" required name="description"></textarea>
               <label for="textarea2">Descripcion</label>
             </div>
           </div>
-          <a class="btn red modal-close waves-effect waves-green btn-flat" data-position="bottom" data-tooltip="cancel">Cancelar</a>
-          <input type="submit" class="btn green waves-effect waves-green btn-flat" id="btnConfirm" data-position="top" type="submit" data-tooltip="confirm">
+          <div class="row center">
+            <a class="btn red modal-close waves-effect waves-green btn-flat" data-position="bottom" data-tooltip="cancel">Cancelar</a>
+          <input type="submit" value="Enviar" class="btn green waves-effect waves-green btn-flat" id="btnConfirm" data-tooltip="confirm">
+          </div>
         </form>
       </div>
     </div>

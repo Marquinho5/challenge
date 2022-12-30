@@ -20,7 +20,7 @@ async function AddMovie(form){
         body:form
     });
     const data= await response.json();
-    window.reload()
+    return data;
 }
 //Search function
 function Search(data) {
@@ -36,7 +36,7 @@ function Search(data) {
         //I declare the text that is written in the search engine
         const text = formSearch.value.toLowerCase();
         //I loop through the data obtained from the asynchronous function
-        data.forEach(product => {
+        data.info.forEach(product => {
                 //I declare the obtained title and parse it to lower case
                 let name = product.title.toLowerCase();
                 //I check that the variable is not empty
@@ -60,7 +60,7 @@ function Search(data) {
 }
 
 ListFilms().then(data=>{
-    data.forEach(function(films){
+    data.info.forEach(function(films){
         newCardFilms(films);
     })
 })
@@ -92,7 +92,7 @@ formSearch.addEventListener('focusout', e => {
 document.querySelector('.sort').addEventListener('click', e=>{
     ListFilms().then(data=>{
         container.innerHTML="";
-        data.sort().forEach(function(films){
+        data.info.sort().forEach(function(films){
             newCardFilms(films);
         })
     })
@@ -101,7 +101,7 @@ document.querySelector('.sort').addEventListener('click', e=>{
 document.querySelector('.reverse').addEventListener('click', e=>{
     ListFilms().then(data=>{
         container.innerHTML="";
-        data.reverse().forEach(function(films){
+        data.info.reverse().forEach(function(films){
             newCardFilms(films);
         })
     })
@@ -116,11 +116,27 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener("submit", function(e){
     e.preventDefault();
     var datosFormulario= new FormData(form);
-    AddMovie(datosFormulario);
-    window.location.href="?view=Home"
+    AddMovie(datosFormulario).then(element=>{
+        ListFilms().then(data=>{
+            container.innerHTML="";
+            data.info.reverse().forEach(function(films){
+                newCardFilms(films);
+            })
+        })
+    })
 })
 
   });
+
+  document.querySelector('#btnConfirm').addEventListener('click',e=>{
+    setTimeout(function(){
+        document.querySelector('.title').value=""
+        document.querySelector('.gender').value=""
+        document.querySelector('.urlImg').value=""
+        document.querySelector('.description').value=""
+    ,0500})
+    
+  })
 
   $(document).ready(function() {
     $('input#input_text, textarea#textarea2').characterCounter();

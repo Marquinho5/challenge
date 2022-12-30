@@ -1,5 +1,22 @@
 <?php
 session_start();
+
+require_once __DIR__.'\vendor\autoload.php';
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+include 'credentials.php';
+function validate($json){
+    $payload=[
+        "exp"=> EXP,
+        "iat"=> IAT,
+        "info"=> $json
+    ];
+    
+    $encode=JWT::encode($payload, KEY, 'HS256');
+    $decoded = JWT::decode($encode, new Key(KEY, 'HS256'));
+    return $decoded;
+}
 header('Content-Type: application/json');
 switch($_GET['mode']){
     case "ListFilms":
@@ -16,6 +33,7 @@ switch($_GET['mode']){
                 "redirection"=>$row['Redirection']
             );
         }
+        $body=validate($json);
     break;
     case "ListDirector":
         include '../Models/peliculas_model.php';
@@ -38,6 +56,7 @@ switch($_GET['mode']){
             }
             
         }
+        $body=validate($json);
     break;
     case "ListActor":
         include '../Models/peliculas_model.php';
@@ -50,6 +69,7 @@ switch($_GET['mode']){
                 "img"=>$row['imgUrl']
             );
         }
+        $body=validate($json);
     break;
     case "ListEpisode":
         include '../Models/peliculas_model.php';
@@ -65,14 +85,25 @@ switch($_GET['mode']){
                 "numEpisode"=>$row['num_episode']
             );
         }
+        $body=validate($json);
     break;
     case "AddMovie":
         include '../Models/peliculas_model.php';
         $list= new Peliculas();
-        $response=$list->AddMovie($_POST['title'],$_POST['gender'],$_POST['urlImg'],$_POST['description'],$_POST['redirection']);
+        $response=$list->AddMovie($_POST['title'],$_POST['gender'],$_POST['urlImg'],$_POST['description']);
         $json=array("error"=>"Cargado exitosamente.","errno"=>200);
+        $payload=[
+            "exp"=> EXP,
+            "iat"=> IAT,
+            "info"=> $json
+        ];
+        
+        $encode=JWT::encode($payload, KEY, 'HS256');
+        $body=$encode;
     break;
     
 }
-echo json_encode($json);
+//print_r($decoded);
+echo json_encode($body);
 ?>
+

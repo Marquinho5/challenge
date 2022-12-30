@@ -25,7 +25,7 @@ function Search(data) {
         result.innerHTML = '';
         const text = formSearch.value.toLowerCase();
 
-        data.forEach(product => {
+        data.info.forEach(product => {
                 let name = product.title.toLowerCase();
                 if (name.indexOf(text) !== -1) {
                     result.innerHTML += `
@@ -46,7 +46,7 @@ function Search(data) {
 }
 ListActor().then(data=>{
     console.log(data)
-    data.forEach(function(films){
+    data.info.forEach(function(films){
         newCardDirector(films);
     })
 })
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.querySelector('.sort').addEventListener('click', e=>{
     ListActor().then(data=>{
         container.innerHTML="";
-        data.sort().forEach(function(films){
+        data.info.sort().forEach(function(films){
             newCardDirector(films);
         })
     })
@@ -77,7 +77,7 @@ document.querySelector('.sort').addEventListener('click', e=>{
 document.querySelector('.reverse').addEventListener('click', e=>{
     ListActor().then(data=>{
         container.innerHTML="";
-        data.reverse().forEach(function(films){
+        data.info.reverse().forEach(function(films){
             newCardDirector(films);
         })
     })

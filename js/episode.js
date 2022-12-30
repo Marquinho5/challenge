@@ -7,7 +7,7 @@ const id=document.querySelector('body').getAttribute('id');
 console.log(id)
 ListEpisode().then(data=>{
     console.log(data)
-    data.forEach(function(episode){
+    data.info.forEach(function(episode){
         newCardDirector(episode);
     })
 })

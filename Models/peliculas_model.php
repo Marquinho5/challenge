@@ -9,10 +9,10 @@ class Peliculas{
             exit();
         }
     }
-    public function AddMovie($title,$redirection,$description,$gender,$img){
+    public function AddMovie($title,$description,$gender,$img){
         $this->Connect();
         $this->response=$this->db->query(
-            "INSERT INTO `peliculas` (`IdFilm`, `Title`, `Description`, `Gender`, `ImgUrl`, `Redirection`) VALUES (NULL, '$title', '$description', '$gender', '$img', '$redirection');"
+            "INSERT INTO `peliculas` (`IdFilm`, `Title`, `Description`, `Gender`, `ImgUrl`) VALUES (NULL, '$title', '$description', '$gender', '$img');"
         );
         if($this->db->errno){
 			echo "<h1>".$this->db->error."</h1>";

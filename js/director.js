@@ -1,38 +1,46 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, "onOpenStart");
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, "onOpenStart");
+  });
 async function ListDirector(){
     const response= await fetch("API/peliculas.php?mode=ListDirector");
     const data= await response.json();
-    buscadorFuncional(data)
+    Search(data)
     return data;
 }
 
-function buscadorFuncional(data) {
+function Search(data) {
 
-    const resultado = document.querySelector('#resultado_buscar');
-    const formulario = document.querySelector('#search');
+    const result = document.querySelector('#resultado_buscar');
+    const formSearch = document.querySelector('#search');
 
-    const filtrar = () => {
-        resultado.classList.add('visible')
-        resultado.classList.remove('oculto')
-        resultado.innerHTML = '';
-        const texto = formulario.value.toLowerCase();
+    const filter = () => {
+        result.classList.add('visible')
+        result.classList.remove('oculto')
+        result.innerHTML = '';
+        const text = formSearch.value.toLowerCase();
 
-        data.forEach(producto => {
-                let nombre = producto.title.toLowerCase();
-                if (nombre.indexOf(texto) !== -1) {
-                    resultado.innerHTML += `
-                    <a style=text-decoration:none;  href=?metodo=mostrarProducto&producto=${producto.director}><li>${producto.director}</li></a>
+        data.forEach(product => {
+                let name = product.title.toLowerCase();
+                if (name.indexOf(text) !== -1) {
+                    result.innerHTML += `
+                    <a style=text-decoration:none;  href=?metodo=mostrarProducto&producto=${product.director}><li>${product.director}</li></a>
                     `
                 }
                 
         })
-        if (resultado.innerHTML == '') {
-            resultado.innerHTML = `
+        if (result.innerHTML == '') {
+            result.innerHTML = `
             <li>Producto no encontrado</li>
             `
         }
     }
     
-    formulario.addEventListener('keyup', filtrar)
+    formSearch.addEventListener('keyup', filter)
     
 }
 ListDirector().then(data=>{
@@ -57,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Dropdown.init(elems, "outDuration");
   });
 
-  const formulario = document.querySelector('#search');
-  const resultado = document.querySelector('#resultado_buscar');
-  formulario.addEventListener('focusout', e => {
-      resultado.innerHTML=""
+  const formSearch = document.querySelector('#search');
+  const result = document.querySelector('#resultado_buscar');
+  formSearch.addEventListener('focusout', e => {
+      result.innerHTML=""
   })
   document.querySelector('.sort').addEventListener('click', e=>{
     ListDirector().then(data=>{

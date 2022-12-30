@@ -74,7 +74,7 @@ function newCardFilms(films){
     clon.querySelector('.image').setAttribute("src", films.img);
     clon.querySelector('.card-title').textContent=films.title;
     clon.querySelector('.card-content').textContent=films.description;
-    clon.querySelector('.card-href').setAttribute("href", films.redirection);
+    clon.querySelector('.card-href').setAttribute("href", "?view=Capitulos&id="+films.id);
     container.appendChild(clon);
 }
 document.addEventListener('DOMContentLoaded', function() {

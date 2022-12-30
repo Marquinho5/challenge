@@ -8,6 +8,7 @@ switch($_GET['mode']){
         $response=$list->ListFlims();
         foreach($response as $row){
             $json[]=array(
+                "id"=>$row['IdFilm'],
                 "title"=>$row['Title'],
                 "img"=>$row['ImgUrl'],
                 "description"=>$row['Description'],
@@ -50,12 +51,28 @@ switch($_GET['mode']){
             );
         }
     break;
+    case "ListEpisode":
+        include '../Models/peliculas_model.php';
+        $list= new Peliculas();
+        $id=$_GET['id'];
+        $response=$list->ListEpisode($id);
+        foreach($response as $row){
+            $json[]=array(
+                "title"=>$row['Title'],
+                "duration"=>$row['Duration'],
+                "Url"=>$row['Url'],
+                "img"=>$row['ImgUrl'],
+                "numEpisode"=>$row['num_episode']
+            );
+        }
+    break;
     case "AddMovie":
         include '../Models/peliculas_model.php';
         $list= new Peliculas();
         $response=$list->AddMovie($_POST['title'],$_POST['gender'],$_POST['urlImg'],$_POST['description'],$_POST['redirection']);
         $json=array("error"=>"Cargado exitosamente.","errno"=>200);
     break;
+    
 }
 echo json_encode($json);
 ?>

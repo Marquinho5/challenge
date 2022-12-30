@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Document</title>
+</head>
+<body id="//ID//">
+    
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="?view=Home">Peliculas</a></li>
+        <li><a href="?view=Director">Directores</a></li>
+        <li><a href="?view=Actores">Actores</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="?view=Home">Peliculas</a></li>
+    <li><a href="?view=Director">Directores</a></li>
+    <li><a href="?view=Actores">Actores</a></li>
+  </ul>
+      
+    <div class="row l12 s12">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h5 class="center-align "></h5>
+                </div>
+            </div>
+            <div class="row list">
+                <template id="tpl__cardsEpisodes">
+                        <div class="col s12 m4">
+                          <div class="card">
+                            <div class="card-image">
+                              <img class="image">
+                              <span class="card-title title"></span><span class="episode"></span>
+                              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">play_arrow</i></a>
+                            </div>
+                            <div class="card-content">
+                              <p class="duration"></p>
+                            </div>
+                          </div>
+                        </div>
+                </template>
+            </div>
+        </div>
+        
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed">
+    <div class="modal-content">
+      <div class="row">
+        
+      </div>
+    </div>
+  </div>
+  
+    </div>    
+
+    <script src="js/episode.js"></script>
+</body>
+</html>

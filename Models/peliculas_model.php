@@ -36,7 +36,7 @@ class Peliculas{
     public function ListDirector(){
         $this->Connect();
         $this->response=$this->db->query(
-            "SELECT d.Name, p.Title,d.imgUrl FROM `peliculas` as p INNER JOIN director as d Where p.IdFilm=d.DirectedMovies ORDER BY `d`.`Name` ASC;"
+            "SELECT d.Name,p.Title,d.imgUrl FROM `peliculas` as p INNER JOIN director as d Where d.DirectedMovies= p.IdFilm ORDER BY `d`.`Name` ASC;"
         );
         if($this->db->errno){
 			echo "<h1>".$this->db->error."</h1>";
@@ -49,6 +49,18 @@ class Peliculas{
         $this->Connect();
         $this->response=$this->db->query(
             "SELECT a.Name,p.Title,a.imgUrl FROM `peliculas` as p INNER JOIN actores as a Where a.idFilms= p.IdFilm ORDER BY `a`.`Name` ASC;"
+        );
+        if($this->db->errno){
+			echo "<h1>".$this->db->error."</h1>";
+			exit();
+		}else{
+            return $this->response;
+        }
+    }
+    public function ListEpisode($id){
+        $this->Connect();
+        $this->response=$this->db->query(
+            "SELECT * FROM capitulos as c INNER JOIN peliculas as p ON p.Title=c.Title WHERE p.IdFilm= $id ORDER BY c.num_episode ASC;"
         );
         if($this->db->errno){
 			echo "<h1>".$this->db->error."</h1>";

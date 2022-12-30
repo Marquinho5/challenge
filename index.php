@@ -11,6 +11,9 @@ if($_SERVER['REQUEST_METHOD']== "GET"){
                 case "Actores":
                     include 'Views/actores.html';
                 break;
+                case "Capitulos":
+                    include 'Controllers/episodes_controller.php';
+                break;
                 default:
                     echo "Error";
                 break;

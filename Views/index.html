@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="?view=Home">Peliculas</a></li>
+        <li><a href="?view=Director">Directores</a></li>
+        <li><a href="?view=Actores">Actores</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="?view=Home">Peliculas</a></li>
+    <li><a href="?view=Director">Directores</a></li>
+    <li><a href="?view=Actores">Actores</a></li>
+  </ul>
+      
+    <div class="row l12 s12">
+        <div class="nav-wrapper">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        <ul id="dropdown2" class="dropdown-content">
+            <li><a class="sort">A-z<span class="badge "></span></a></li>
+            <li><a class="reverse">Z-a<span class="badge "></span></a></li>
+          </ul>
+          <a class="btn dropdown-trigger" href="#!" data-target="dropdown2">Filtrar<i class="material-icons right">arrow_drop_down</i></a>
+        <div class="container">
+            
+              <div id="resultado_buscar" class="resultado_buscar">
+                <ul>
+
+                </ul>
+                </div>
+                
+            <div class="row fl">
+                <template id="tpl__cardsFilms">
+                    <div class="col s12 m4">
+                        <div class="card medium z-depth-4">
+                            <div class="card-image">
+                                <img class="image">
+                                <span class="card-title red-text"></span>
+                            </div>
+                            <div class="card-content">
+                                <p></p>
+                            </div>
+                            <div class="card-action">
+                                <a class="card-href" href="">Ver Pelicula</a>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="fixed-action-btn">
+          <a id="menu" class=" btn-large red waves-effect btn btn-floating">
+            <i class="large material-icons">mode_edit</i>
+          </a>
+          <ul class="">
+            <li><a class="btn-floating blue addMovie waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons " >add</i></a></li>
+          </ul>
+        </div>
+        <div class="tap-target" data-target="menu">
+          <div class="tap-target-content">
+            <h5>Aqui puedes agregar mas peliculas</h5>
+          </div>
+        </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed">
+    <div class="modal-content">
+      <div class="row">
+        <form id="form" action="">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="first_name" name="title" type="text" class="validate" required>
+              <label for="first_name">Titulo</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="last_name" name="gender" type="text" class="validate" required>
+              <label for="last_name">Genero</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" name="redirection" type="text" class="validate" required>
+              <label for="email">URL redireccion</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="img" name="urlImg" type="text" class="validate" required>
+              <label for="img">URL Imagen</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea2" class="materialize-textarea" data-length="255" required name="description"></textarea>
+              <label for="textarea2">Descripcion</label>
+            </div>
+          </div>
+          <a class="btn red modal-close waves-effect waves-green btn-flat" data-position="bottom" data-tooltip="cancel">Cancelar</a>
+          <input type="submit" class="btn green waves-effect waves-green btn-flat" id="btnConfirm" data-position="top" type="submit" data-tooltip="confirm">
+        </form>
+      </div>
+    </div>
+  </div>
+  
+    </div>    
+
+    <script src="js/films.js"></script>
+</body>
+</html>

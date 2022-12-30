@@ -13,8 +13,8 @@ function validate($json){
         "info"=> $json
     ];
     
-    $encode=JWT::encode($payload, KEY, 'HS256');
-    $decoded = JWT::decode($encode, new Key(KEY, 'HS256'));
+    $encode=JWT::encode($payload, KEY, LANG);
+    $decoded = JWT::decode($encode, new Key(KEY, LANG));
     return $decoded;
 }
 header('Content-Type: application/json');
@@ -98,7 +98,7 @@ switch($_GET['mode']){
             "info"=> $json
         ];
         
-        $encode=JWT::encode($payload, KEY, 'HS256');
+        $encode=JWT::encode($payload, KEY, LANG);
         $body=$encode;
     break;
     
